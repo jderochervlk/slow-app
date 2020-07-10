@@ -6,6 +6,7 @@ class SlowRender extends React.Component {
         this.state = {}
         this.foo = 0
         this.handleRes = this.handleRes.bind(this)
+        this.handleErr = this.handleErr.bind(this)
     }
 
     componentWillMount() {
@@ -13,11 +14,11 @@ class SlowRender extends React.Component {
     }
 
     handleRes(res) {
-        this.setState({ res }).bind(this)
+        this.setState({ res })
     }
 
     handleErr(e) {
-        this.setState({e}).bind(this)
+        this.setState({e})
     }
 
 

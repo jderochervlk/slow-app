@@ -8,12 +8,31 @@ const ButtonToClick = ({handleButtonClick}) => {
         const b = a.map(i => i / 1000 / 1000000 * 1000 % 6000)
         const c = b.reduce((val, acc) => acc + val + 10000000000000 * 10 + 100000000 / 10, 0)
 
-        fetch('https://baconipsum.com/api/?type=meat-and-filler')
+        fetch('https://jsonplaceholder.typicode.com/todos')
             .then(res => res.json())
-            .then(json => console.log(json))
+            .then(json => {
+                console.log(json)
 
-        setTotal(c + total)
-        handleButtonClick(total)
+                const d = JSON
+                    .stringify(json)
+                    .split('')
+                    .map(s => s.charCodeAt())
+                    .reduce((x, y) => x + y, 0)
+
+                fetch('https://baconipsum.com/api/?type=meat-and-filler')
+                    .then(res => res.json())
+                    .then(json => {
+                        const e = JSON
+                            .stringify(json)
+                            .split('')
+                            .map(s => s.charCodeAt())
+                            .reduce((x, y) => x + y, 0)
+                            
+                        setTotal(c + total + d + e)
+                        handleButtonClick(total)
+                        })  
+
+            })
     }
 
     return (
